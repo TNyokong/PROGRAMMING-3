@@ -10,7 +10,6 @@ app = Flask(__name__)
 @app.route("/")
 def home():
     return render_template("index.html")
-
 app.route("/", methods = [" POST", "GET"])
 def home1():
     FNAME = request.form ["FNAME"]
@@ -18,7 +17,7 @@ def home1():
     FPASS = request.form ["FNAME"]
     connection -=sqlite3.connect(current + "SQLSERVER.db")
     cur = connection.cursor()
-    cur.execute("SELECT * FROM user WHERE Username =?", FNAME,FPASS )
+    cur.execute("SELECT * FROM user WHERE username =? AND password = ?", FNAME,FPASS )
     user = cur.fetchone()
     if user is not None:
         return render_template("")
